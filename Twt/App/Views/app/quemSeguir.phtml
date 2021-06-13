@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg menu">
+	<div class="container">
+	  <div class="navbar-nav">
+	  	<a class="menuItem" href="/timeline">
+	  		Home
+	  	</a>
+
+	  	<a class="menuItem" href="/sair">
+	  		Sair
+	  	</a>
+			<img src="/img/twitter_logo.png" class="menuIco" />
+	  </div>
+	</div>
+</nav>
+
+		<div class="col-md-12">
+			
+			<div class="row mb-2">
+				<div class="col">
+					<div class="card">
+						<div class="card-body">
+							<form method="get" action="/quem_seguir">
+								<div class="input-group mb-3">
+									<input type="text" name="popSearch" class="form-control" placeholder="Quem você está procurando?">
+									<div class="input-group-append">
+										<button class="btn btn-primary" type="submit">Procurar</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<?php foreach($this->view->users as $indice => $user) { ?>
+			<div class="row mb-2">
+				<div class="col">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-6">
+									<?= $user['name'] ?>	
+								</div>
+							
+								<div class="col-md-6 d-flex justify-content-end">
+									<div>
+										<?php if($user['seguindo_sn'] == 0) { ?>
+										<a href="/acao?acao=seguir&id_user=<?= $user['id'] ?>" class="btn btn-success">Seguir</a>
+										<?php } ?>
+
+										<?php if($user['seguindo_sn'] == 1) { ?>
+										<a href="/acao?acao=deixar_de_seguir&id_user=<?= $user['id'] ?>" class="btn btn-danger">Deixar de seguir</a>
+										<?php } ?>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<?php } ?>
+		</div>
+	</div>
+</div>
